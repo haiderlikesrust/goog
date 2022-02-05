@@ -1,0 +1,12 @@
+pkgbase = gog
+	pkgver = 0.1.0
+	pkgrel = 1
+	arch = i686
+	arch = x86_64
+	arch = armv6h
+	arch = armv7h
+	license = MIT OR Apache-2.0
+	makedepends = rust
+	makedepends = cargo
+
+pkgname = gog

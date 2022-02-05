@@ -1,5 +1,4 @@
 pub mod errors;
-pub mod commands;
 pub mod models;
 use clap;
 use errors::GogError;
