@@ -1,5 +1,5 @@
 pub mod errors;
-pub mod models;
+
 use clap;
 use errors::GogError;
 use dialoguer::{Select};
