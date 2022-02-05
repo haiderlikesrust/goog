@@ -32,7 +32,7 @@ pub fn run() -> Result<(), GogError> {
         .subcommand(
             clap::App::new("select")
             .about("Select your browser and the command will automatically run.")
-            .short_flag('s')
+            .alias("s")
             .arg(
                 clap::Arg::new("search")
                 .takes_value(true)
