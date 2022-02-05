@@ -120,7 +120,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "gog"
+name = "goog"
 version = "0.1.0"
 dependencies = [
  "clap",

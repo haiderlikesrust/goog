@@ -1,4 +1,4 @@
-pkgbase = gog
+pkgbase = goog
 	pkgver = 0.1.0
 	pkgrel = 1
 	arch = i686
@@ -9,4 +9,4 @@ pkgbase = gog
 	makedepends = rust
 	makedepends = cargo
 
-pkgname = gog
+pkgname = goog

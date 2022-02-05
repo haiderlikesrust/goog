@@ -1,5 +1,5 @@
 # Maintainer: Haider <haideremailsender122@gmail.com>
-pkgname=gog
+pkgname=goog
 pkgver=0.1.0
 pkgrel=1
 makedepends=('rust' 'cargo')

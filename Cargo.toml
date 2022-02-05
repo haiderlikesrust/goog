@@ -1,6 +1,6 @@
 [package]
 description = "Search on google from your terminal"
-name = "gog"
+name = "goog"
 version = "0.1.0"
 edition = "2021"
 license = "MIT OR Apache-2.0"
@@ -25,5 +25,5 @@ console = "0.15.0"
 
 
 [lib]
-name = "gog"
+name = "goog"
 path = "src/lib/mod.rs"

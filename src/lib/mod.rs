@@ -1,13 +1,13 @@
 pub mod errors;
 
 use clap;
-use errors::GogError;
+use errors::*;
 use dialoguer::{Select};
 use console::Term;
 
 
 
-pub fn request_search(query: String, with: Option<String>) -> Result<(), GogError> {
+pub fn request_search(query: String, with: Option<String>) -> Result<(), GoogError> {
     let query = format!("
     https://www.google.com/search?q={}
     ", query);
@@ -17,7 +17,7 @@ pub fn request_search(query: String, with: Option<String>) -> Result<(), GogErro
     }
 }
 
-pub fn run() -> Result<(), GogError> {
+pub fn run() -> Result<(), GoogError> {
     let app = clap::App::new("gog")
         .setting(clap::AppSettings::ArgRequiredElseHelp)
 
@@ -62,10 +62,10 @@ pub fn run() -> Result<(), GogError> {
                     println!("Searching for\n {} on CHROME" , a);
                     Ok(())
                 },
-                _ => Err(GogError::GogNotFound)
+                _ => Err(GoogError::GoogNotFound)
             }
         },
-        None => Err(GogError::GogNotFound)
+        None => Err(GoogError::GoogNotFound)
     };
     
 
@@ -75,7 +75,7 @@ pub fn run() -> Result<(), GogError> {
             println!("Searching for\n {} on CHROME" , a);
             Ok(())
         },
-        None => Err(GogError::GogNotFound)
+        None => Err(GoogError::GoogNotFound)
     }
 
 }

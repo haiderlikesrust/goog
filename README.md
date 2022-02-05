@@ -1,4 +1,4 @@
-## gog
+## goog
 
 Search on google from your terminal.
 
@@ -23,7 +23,7 @@ For selecting browsers use:
 
 
 ```bash
-$ gog select -s Why use rust
+$ goog select -s Why use rust
 ```
 
 `-s` is required
@@ -33,13 +33,13 @@ Defualt it will open chrome
 
 
 ```bash
-$ gog -s Why use rust
+$ goog -s Why use rust
 ```
 
 ### Installation
 #### Arch
 ```bash
-$ git clone https://github.com/Haider-Ali-Dev/gog
+$ git clone https://github.com/Haider-Ali-Dev/goog
 ```
 
 ```bash
@@ -47,7 +47,7 @@ $ makepkg -si
 ```
 
 ```bash
-$ gog
+$ goog
 ```
 
 #### Other Linux OS
@@ -56,10 +56,10 @@ Make sure you have Rust downloaded.
 
 
 ```bash
-$ cargo install gog
+$ cargo install goog
 ```
 
 ```bash
-$ gog
+$ goog
 ```
 

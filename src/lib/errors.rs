@@ -1,10 +1,10 @@
 
 #[derive(Debug, thiserror::Error)]
-pub enum GogError {
+pub enum GoogError {
     #[error(r#"Error while running "go init"#)]
-    GogInitError,
+    GoogInitError,
     #[error("Command or Arg not found")]
-    GogNotFound,
+    GoogNotFound,
     #[error("Open Browser Error")]
-    GogBrowserError(#[from] std::io::Error)
+    GoogBrowserError(#[from] std::io::Error)
 }
