@@ -3,40 +3,19 @@ pub mod commands;
 pub mod models;
 use clap;
 use errors::GogError;
-use serde::Deserialize;
-
-use std::fs;
-
-#[derive(Deserialize)]
-struct Config {
-    api_key: String
-}
+use dialoguer::{Select};
+use console::Term;
 
 
 
-fn read_config() -> Result<Config, crate::errors::GogError> {
-    if let  Some(f) = directories::ProjectDirs::from("", "", "gog/config.json") {
-        let config = fs::read_to_string(f.config_dir())?;
-        Ok(serde_json::from_str::<Config>(config.as_str())?)
-    } else {
-        Err(GogError::GogInitError)
-    }
-    
-
-}
-
-
-pub fn request_search(query: String) -> Vec<crate::models::Root> {
-    type Output =  Vec<crate::models::Root>;
+pub fn request_search(query: String, with: Option<String>) -> Result<(), GogError> {
     let query = format!("
-        https://www.googleapis.com/customsearch/v1?key={}&cx=017576662512468239146:omuauf_lfve&q={}
-    ", read_config().expect("Error reading config file").api_key, query);
-    let search = reqwest::blocking::get(&query)
-        .expect("Error while getting results")
-        .json::<Output>()
-        .expect("Error parsing");
-    
-    search
+    https://www.google.com/search?q={}
+    ", query);
+    match with {
+        Some(e) => Ok(open::with(&query, &e)?),
+        None => Ok(open::that(&query)?)
+    }
 }
 
 pub fn run() -> Result<(), GogError> {
@@ -52,40 +31,53 @@ pub fn run() -> Result<(), GogError> {
         
         )
         .subcommand(
-            clap::App::new("init")
-            .about("Creates useful files and folders needed")
-            .short_flag('i')
+            clap::App::new("select")
+            .about("Select your browser and the command will automatically run.")
+            .short_flag('s')
+            .arg(
+                clap::Arg::new("search")
+                .takes_value(true)
+                .value_name("QUERY")
+                .short('s')
+            )
         );
 
     let matches = app.get_matches();
 
-    match matches.subcommand() {
-        Some(_) => Ok(crate::commands::gog_init()?),
-        None => Err(GogError::GogNotFound),
+    match matches.subcommand_matches("select") {
+        Some(e) => {
+            let a = e.value_of("search").expect("You missed a required arg.");
+            let select = Select::new()
+                .default(0_usize)
+                .item("firefox")
+                .item("chrome")
+                .interact_on(&Term::stderr())?;
+            match select {
+                0 => {
+                    request_search(a.to_owned(), Some(format!("firefox")))?;
+                    println!("Searching for\n {} on FIREFOX" , a);
+                    Ok(())
+                },
+                1 => {
+                    request_search(a.to_owned(), Some(format!("google-chrome-stable")))?;
+                    println!("Searching for\n {} on CHROME" , a);
+                    Ok(())
+                },
+                _ => Err(GogError::GogNotFound)
+            }
+        },
+        None => Err(GogError::GogNotFound)
     };
+    
 
     match matches.value_of("search") {
-        Some(e) => {
-            let s = request_search(e.to_string());
-            s.iter()
-                .for_each(|a| {
-                    a.items
-                        .iter()
-                        .for_each(|item| {
-                            println!("
-                            Title: {}\n
-                            Link: {}\n
-                            Description: {}\n
-                            ", item.title, item.link, item.snippet)
-                        })
-                        
-                });
+        Some(a) => {
+            request_search(a.to_string(), None)?;
+            println!("Searching for\n {} on CHROME" , a);
             Ok(())
         },
         None => Err(GogError::GogNotFound)
     }
-
-    
 
 }
 
