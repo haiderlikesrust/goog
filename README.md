@@ -16,6 +16,26 @@ Unsupported or not tested operating systems
 - macOS
 
 
+### Usage
+
+
+For selecting browsers use:
+
+
+```bash
+$ gog select -s Why use rust
+```
+
+`-s` is required
+
+
+Defualt it will open chrome
+
+
+```bash
+$ gog -s Why use rust
+```
+
 ### Installation
 #### Arch
 ```bash
@@ -42,3 +62,4 @@ $ cargo install gog
 ```bash
 $ gog
 ```
+
