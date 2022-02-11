@@ -18,7 +18,7 @@ pub fn request_search(query: String, with: Option<String>) -> Result<(), GoogErr
 }
 
 pub fn run() -> Result<(), GoogError> {
-    let app = clap::App::new("gog")
+    let app = clap::App::new("goog")
         .setting(clap::AppSettings::ArgRequiredElseHelp)
 
         .about("Run Google in your terminal!")
@@ -72,7 +72,7 @@ pub fn run() -> Result<(), GoogError> {
     match matches.value_of("search") {
         Some(a) => {
             request_search(a.to_string(), None)?;
-            println!("Searching for\n {} on CHROME" , a);
+            println!("Searching for\n {} on your defualt browser" , a);
             Ok(())
         },
         None => Err(GoogError::GoogNotFound)
