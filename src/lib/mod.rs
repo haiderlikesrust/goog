@@ -1,5 +1,5 @@
 pub mod errors;
-const GOOG_VERSION: &str = "0.1.1";
+const GOOG_VERSION: &str = "0.1.2";
 use clap;
 use console::Term;
 use dialoguer::Select;
