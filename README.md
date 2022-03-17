@@ -2,6 +2,13 @@
 
 Search on google from your terminal.
 
+
+**Update 2.0.0**
+
+
+This update allows windows users to run go.  
+
+
 Supported Browsers:
 - Chrome
 - Firefox
@@ -9,10 +16,9 @@ Supported Browsers:
 
 Supported Operating Systems
 - Linux
-
+- Windows
 
 Unsupported or not tested operating systems
-- Windows
 - macOS
 
 
