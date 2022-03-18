@@ -6,7 +6,7 @@ Search on google from your terminal.
 **Update 2.0.0**
 
 
-This update allows windows users to run go.  
+This update allows windows users to run goog.  
 
 
 Supported Browsers:
